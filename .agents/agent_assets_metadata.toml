@@ -1,0 +1,50 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "6z4hXnMZ-3Avy8czN-9cN"
+uri = "file://artifacts/starframe-shop/src/assets/frame-1.png"
+type = "image"
+title = "Galaxy photo frame"
+
+[[generated]]
+id = "2-fhm_2z457Zpz9jnyY6d"
+uri = "file://artifacts/starframe-shop/src/assets/frame-2.png"
+type = "image"
+title = "Communicator photo frame"
+
+[[generated]]
+id = "E9j0o7AeLO5krDFHzM8ft"
+uri = "file://artifacts/starframe-shop/src/assets/frame-3.png"
+type = "image"
+title = "LCARS photo frame"
+
+[[generated]]
+id = "RLNoT558M7HQzTm43RxVR"
+uri = "file://artifacts/starframe-shop/src/assets/frame-4.png"
+type = "image"
+title = "Starship hull frame"
+
+[[generated]]
+id = "wuM8fqTw9TCO3WULMLGlQ"
+uri = "file://artifacts/starframe-shop/src/assets/frame-5.png"
+type = "image"
+title = "Captain's photo frame"
+
+[[generated]]
+id = "2Yufhx10BIUs1kgKSB1Oo"
+uri = "file://artifacts/starframe-shop/src/assets/frame-6.png"
+type = "image"
+title = "Holographic pad frame"
+
+[[generated]]
+id = "F-B08yYAIZWQ1DrxUyhM1"
+uri = "file://artifacts/starframe-shop/src/assets/frame-7.png"
+type = "image"
+title = "Alien empire frame"
+
+[[generated]]
+id = "bmzfXOytc_dB1hbE204L5"
+uri = "file://artifacts/starframe-shop/src/assets/frame-8.png"
+type = "image"
+title = "Steampunk astrometrics frame"

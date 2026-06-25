@@ -3,20 +3,25 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: StarFrame Shop API — Star Trek themed photo frame store
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: products
+    description: Photo frame products
+  - name: cart
+    description: Shopping cart
+  - name: orders
+    description: Orders
 paths:
   /healthz:
     get:
       operationId: healthCheck
       tags: [health]
       summary: Health check
-      description: Returns server health status
       responses:
         "200":
           description: Healthy
@@ -24,6 +29,218 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /products:
+    get:
+      operationId: listProducts
+      tags: [products]
+      summary: List all photo frame products
+      parameters:
+        - name: category
+          in: query
+          schema:
+            type: string
+        - name: search
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: List of products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+
+  /products/featured:
+    get:
+      operationId: listFeaturedProducts
+      tags: [products]
+      summary: Get featured products for homepage
+      responses:
+        "200":
+          description: Featured products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+
+  /products/categories:
+    get:
+      operationId: listCategories
+      tags: [products]
+      summary: List all product categories
+      responses:
+        "200":
+          description: Category list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Category"
+
+  /products/{id}:
+    get:
+      operationId: getProduct
+      tags: [products]
+      summary: Get a single product by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Product detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "404":
+          description: Not found
+
+  /cart:
+    get:
+      operationId: getCart
+      tags: [cart]
+      summary: Get the current cart
+      parameters:
+        - name: cartId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Cart contents
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cart"
+
+  /cart/add:
+    post:
+      operationId: addToCart
+      tags: [cart]
+      summary: Add item to cart
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CartItemInput"
+      responses:
+        "200":
+          description: Updated cart
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cart"
+
+  /cart/update:
+    patch:
+      operationId: updateCartItem
+      tags: [cart]
+      summary: Update cart item quantity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CartItemUpdate"
+      responses:
+        "200":
+          description: Updated cart
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cart"
+
+  /cart/remove:
+    delete:
+      operationId: removeFromCart
+      tags: [cart]
+      summary: Remove item from cart
+      parameters:
+        - name: cartId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: productId
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Updated cart
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cart"
+
+  /orders:
+    post:
+      operationId: createOrder
+      tags: [orders]
+      summary: Place an order (checkout)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OrderInput"
+      responses:
+        "201":
+          description: Order placed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Order"
+        "400":
+          description: Invalid order
+
+  /orders/{id}:
+    get:
+      operationId: getOrder
+      tags: [orders]
+      summary: Get order by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Order detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Order"
+        "404":
+          description: Not found
+
+  /store/stats:
+    get:
+      operationId: getStoreStats
+      tags: [products]
+      summary: Get store statistics for the homepage
+      responses:
+        "200":
+          description: Store stats
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StoreStats"
+
 components:
   schemas:
     HealthStatus:
@@ -34,3 +251,151 @@ components:
       required:
         - status
 
+    Product:
+      type: object
+      required: [id, name, description, price, category, imageUrl, inStock, starTrekQuote]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        category:
+          type: string
+        imageUrl:
+          type: string
+        inStock:
+          type: boolean
+        stockCount:
+          type: ["integer", "null"]
+        starTrekQuote:
+          type: string
+        featured:
+          type: boolean
+        dimensions:
+          type: ["string", "null"]
+        material:
+          type: ["string", "null"]
+
+    Category:
+      type: object
+      required: [id, name, description, productCount]
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        productCount:
+          type: integer
+
+    Cart:
+      type: object
+      required: [cartId, items, subtotal, itemCount]
+      properties:
+        cartId:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/CartItem"
+        subtotal:
+          type: number
+        itemCount:
+          type: integer
+
+    CartItem:
+      type: object
+      required: [productId, name, price, quantity, imageUrl]
+      properties:
+        productId:
+          type: integer
+        name:
+          type: string
+        price:
+          type: number
+        quantity:
+          type: integer
+        imageUrl:
+          type: string
+
+    CartItemInput:
+      type: object
+      required: [cartId, productId, quantity]
+      properties:
+        cartId:
+          type: string
+        productId:
+          type: integer
+        quantity:
+          type: integer
+
+    CartItemUpdate:
+      type: object
+      required: [cartId, productId, quantity]
+      properties:
+        cartId:
+          type: string
+        productId:
+          type: integer
+        quantity:
+          type: integer
+
+    OrderInput:
+      type: object
+      required: [cartId, customerName, customerEmail, shippingAddress]
+      properties:
+        cartId:
+          type: string
+        customerName:
+          type: string
+        customerEmail:
+          type: string
+        shippingAddress:
+          type: string
+        notes:
+          type: ["string", "null"]
+
+    Order:
+      type: object
+      required: [id, cartId, customerName, customerEmail, shippingAddress, items, total, status, createdAt]
+      properties:
+        id:
+          type: integer
+        cartId:
+          type: string
+        customerName:
+          type: string
+        customerEmail:
+          type: string
+        shippingAddress:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/CartItem"
+        total:
+          type: number
+        status:
+          type: string
+        notes:
+          type: ["string", "null"]
+        createdAt:
+          type: string
+
+    StoreStats:
+      type: object
+      required: [totalProducts, totalCategories, happyCustomers, starTrekFact]
+      properties:
+        totalProducts:
+          type: integer
+        totalCategories:
+          type: integer
+        happyCustomers:
+          type: integer
+        starTrekFact:
+          type: string
