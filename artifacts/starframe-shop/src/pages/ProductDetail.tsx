@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useParams, Link } from "wouter";
-import { motion } from "framer-motion";
 import {
   useGetProduct,
   useAddToCart,
@@ -90,27 +89,17 @@ export default function ProductDetail() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         {/* Image */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.4 }}
-          className="rounded-lg overflow-hidden border border-border bg-card aspect-square"
-        >
+        <div className="rounded-lg overflow-hidden border border-border bg-card aspect-square">
           <img
             src={product.imageUrl}
             alt={product.name}
             className="w-full h-full object-cover"
             data-testid="img-product"
           />
-        </motion.div>
+        </div>
 
         {/* Details */}
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.4, delay: 0.1 }}
-          className="flex flex-col"
-        >
+        <div className="flex flex-col">
           <Badge className="w-fit mb-3 bg-primary/20 text-primary border-primary/30">{product.category}</Badge>
           <h1 className="text-3xl font-bold text-foreground mb-2" data-testid="text-product-name">{product.name}</h1>
 
@@ -192,7 +181,7 @@ export default function ProductDetail() {
               Red Alert — This item has been destroyed. Check back after repairs.
             </p>
           )}
-        </motion.div>
+        </div>
       </div>
     </div>
   );
