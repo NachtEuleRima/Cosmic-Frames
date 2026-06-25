@@ -67,72 +67,73 @@
 }
 
 :root, .dark {
-  --button-outline: rgba(255,255,255, .10);
-  --badge-outline: rgba(255,255,255, .05);
+  --button-outline: rgba(255,153,0, .20);
+  --badge-outline: rgba(255,153,0, .10);
 
   --opaque-button-border-intensity: 9;
 
-  --elevate-1: rgba(255,255,255, .04);
-  --elevate-2: rgba(255,255,255, .09);
+  --elevate-1: rgba(255,153,0, .05);
+  --elevate-2: rgba(255,153,0, .10);
 
-  /* Deep space navy background */
-  --background: 230 23% 6%;
-  --foreground: 210 20% 90%;
+  /* True deep space black */
+  --background: 0 0% 4%;
+  --foreground: 30 80% 92%;
 
-  /* Darker/Lighter panels */
-  --card: 230 23% 10%;
-  --card-foreground: 210 20% 90%;
-  --card-border: 230 23% 18%;
+  /* LCARS panel — very dark with a warm tint */
+  --card: 0 0% 8%;
+  --card-foreground: 30 80% 92%;
+  --card-border: 30 15% 18%;
 
-  --popover: 230 23% 10%;
-  --popover-foreground: 210 20% 90%;
-  --popover-border: 230 23% 18%;
+  --popover: 0 0% 8%;
+  --popover-foreground: 30 80% 92%;
+  --popover-border: 30 15% 18%;
 
   /* Borders and Inputs */
-  --border: 230 23% 18%;
-  --input: 230 23% 14%;
-  --ring: 42 76% 56%; /* Starfleet Gold */
+  --border: 30 15% 18%;
+  --input: 0 0% 11%;
+  --ring: 37 100% 50%;
 
-  /* Primary: Starfleet Gold */
-  --primary: 42 76% 56%;
-  --primary-foreground: 230 23% 6%;
+  /* Primary: authentic LCARS orange #FF9900 */
+  --primary: 37 100% 50%;
+  --primary-foreground: 0 0% 4%;
 
-  /* Secondary: Federation Blue */
-  --secondary: 208 58% 56%;
-  --secondary-foreground: 230 23% 6%;
+  /* Secondary: LCARS periwinkle blue #9999FF */
+  --secondary: 240 100% 80%;
+  --secondary-foreground: 0 0% 4%;
 
-  /* Muted: Subtle grey/blue for inactive items */
-  --muted: 230 23% 15%;
-  --muted-foreground: 210 20% 70%;
+  /* Muted: dark panel */
+  --muted: 0 0% 12%;
+  --muted-foreground: 30 20% 60%;
 
-  /* Accent: LCARS Amber/Orange */
-  --accent: 35 100% 50%;
-  --accent-foreground: 230 23% 6%;
+  /* Accent: LCARS mauve/lilac #CC99CC */
+  --accent: 300 30% 70%;
+  --accent-foreground: 0 0% 4%;
 
-  /* Destructive: Red Alert */
-  --destructive: 0 60% 49%;
-  --destructive-foreground: 210 20% 90%;
+  /* Destructive: Red Alert #CC2200 */
+  --destructive: 8 90% 45%;
+  --destructive-foreground: 30 80% 92%;
 
-  --chart-1: 42 76% 56%;
-  --chart-2: 208 58% 56%;
-  --chart-3: 35 100% 50%;
-  --chart-4: 0 60% 49%;
-  --chart-5: 160 60% 45%;
+  --chart-1: 37 100% 50%;
+  --chart-2: 240 100% 80%;
+  --chart-3: 300 30% 70%;
+  --chart-4: 8 90% 45%;
+  --chart-5: 170 60% 50%;
 
-  --sidebar: 230 23% 8%;
-  --sidebar-foreground: 210 20% 90%;
-  --sidebar-border: 230 23% 16%;
-  --sidebar-primary: 42 76% 56%;
-  --sidebar-primary-foreground: 230 23% 6%;
-  --sidebar-accent: 230 23% 15%;
-  --sidebar-accent-foreground: 210 20% 90%;
-  --sidebar-ring: 42 76% 56%;
+  --sidebar: 0 0% 6%;
+  --sidebar-foreground: 30 80% 92%;
+  --sidebar-border: 30 15% 16%;
+  --sidebar-primary: 37 100% 50%;
+  --sidebar-primary-foreground: 0 0% 4%;
+  --sidebar-accent: 0 0% 10%;
+  --sidebar-accent-foreground: 30 80% 92%;
+  --sidebar-ring: 37 100% 50%;
 
   --app-font-sans: 'Space Grotesk', 'Inter', sans-serif;
   --app-font-serif: Georgia, serif;
   --app-font-mono: 'Space Mono', Menlo, monospace;
-  
-  --radius: 0.25rem;
+
+  /* No border radius — LCARS uses rounded pill shapes on specific elements, sharp elsewhere */
+  --radius: 0rem;
 }
 
 @layer base {
@@ -142,19 +143,32 @@
   body {
     @apply font-sans antialiased bg-background text-foreground;
   }
-  
-  /* LCARS style scrollbar */
+
+  /* LCARS scrollbar */
   ::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
   }
   ::-webkit-scrollbar-track {
-    background: hsl(var(--background)); 
+    background: hsl(0 0% 4%);
   }
   ::-webkit-scrollbar-thumb {
-    background: hsl(var(--primary) / 0.5); 
-    border-radius: 4px;
+    background: hsl(37 100% 50% / 0.6);
+    border-radius: 0px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--primary)); 
+    background: hsl(37 100% 50%);
+  }
+}
+
+/* LCARS utility classes */
+@layer utilities {
+  .lcars-pill-left {
+    border-radius: 2rem 0 0 2rem;
+  }
+  .lcars-pill-right {
+    border-radius: 0 2rem 2rem 0;
+  }
+  .lcars-elbow {
+    border-radius: 2rem 0 0 0;
   }
 }
