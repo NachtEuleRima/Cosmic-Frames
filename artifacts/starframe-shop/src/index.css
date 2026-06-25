@@ -67,72 +67,72 @@
 }
 
 :root, .dark {
-  --button-outline: rgba(255,153,0, .20);
-  --badge-outline: rgba(255,153,0, .10);
+  --button-outline: rgba(100, 160, 255, 0.20);
+  --badge-outline: rgba(100, 160, 255, 0.10);
 
   --opaque-button-border-intensity: 9;
 
-  --elevate-1: rgba(255,153,0, .05);
-  --elevate-2: rgba(255,153,0, .10);
+  --elevate-1: rgba(100, 160, 255, 0.05);
+  --elevate-2: rgba(100, 160, 255, 0.10);
 
-  /* True deep space black */
-  --background: 0 0% 4%;
-  --foreground: 30 80% 92%;
+  /* ── BACKGROUND: deep midnight blue-black ──────────────── */
+  --background: 222 45% 5%;
+  --foreground: 35 70% 88%;       /* warm LCARS peach text */
 
-  /* LCARS panel — very dark with a warm tint */
-  --card: 0 0% 8%;
-  --card-foreground: 30 80% 92%;
-  --card-border: 30 15% 18%;
+  /* ── CARDS: dark blue panels ──────────────────────────── */
+  --card: 222 40% 9%;
+  --card-foreground: 35 70% 88%;
+  --card-border: 220 30% 18%;
 
-  --popover: 0 0% 8%;
-  --popover-foreground: 30 80% 92%;
-  --popover-border: 30 15% 18%;
+  --popover: 222 40% 9%;
+  --popover-foreground: 35 70% 88%;
+  --popover-border: 220 30% 18%;
 
-  /* Borders and Inputs */
-  --border: 30 15% 18%;
-  --input: 0 0% 11%;
-  --ring: 37 100% 50%;
+  /* ── BORDERS / INPUTS ─────────────────────────────────── */
+  --border: 220 30% 18%;
+  --input: 222 35% 12%;
+  --ring: 215 90% 62%;
 
-  /* Primary: authentic LCARS orange #FF9900 */
-  --primary: 37 100% 50%;
-  --primary-foreground: 0 0% 4%;
+  /* ── PRIMARY: Federation blue ─────────────────────────── */
+  --primary: 215 90% 62%;        /* #4d9eff vivid blue */
+  --primary-foreground: 222 45% 5%;
 
-  /* Secondary: LCARS periwinkle blue #9999FF */
-  --secondary: 240 100% 80%;
-  --secondary-foreground: 0 0% 4%;
+  /* ── SECONDARY: LCARS coral/salmon ───────────────────── */
+  --secondary: 12 90% 62%;       /* #ff5e3a warm coral */
+  --secondary-foreground: 222 45% 5%;
 
-  /* Muted: dark panel */
-  --muted: 0 0% 12%;
-  --muted-foreground: 30 20% 60%;
+  /* ── MUTED: dark blue-grey ────────────────────────────── */
+  --muted: 222 30% 14%;
+  --muted-foreground: 220 20% 58%;
 
-  /* Accent: LCARS mauve/lilac #CC99CC */
-  --accent: 300 30% 70%;
-  --accent-foreground: 0 0% 4%;
+  /* ── ACCENT: LCARS mauve/purple ──────────────────────── */
+  --accent: 285 60% 68%;         /* #cc77ff bright violet */
+  --accent-foreground: 222 45% 5%;
 
-  /* Destructive: Red Alert #CC2200 */
-  --destructive: 8 90% 45%;
-  --destructive-foreground: 30 80% 92%;
+  /* ── DESTRUCTIVE: Red Alert ───────────────────────────── */
+  --destructive: 2 90% 52%;      /* vivid red */
+  --destructive-foreground: 35 70% 88%;
 
-  --chart-1: 37 100% 50%;
-  --chart-2: 240 100% 80%;
-  --chart-3: 300 30% 70%;
-  --chart-4: 8 90% 45%;
-  --chart-5: 170 60% 50%;
+  /* ── CHARTS: full LCARS rainbow ──────────────────────── */
+  --chart-1: 215 90% 62%;  /* blue */
+  --chart-2: 12 90% 62%;   /* coral */
+  --chart-3: 285 60% 68%;  /* purple */
+  --chart-4: 37 100% 50%;  /* orange */
+  --chart-5: 165 70% 48%;  /* teal */
 
-  --sidebar: 0 0% 6%;
-  --sidebar-foreground: 30 80% 92%;
-  --sidebar-border: 30 15% 16%;
-  --sidebar-primary: 37 100% 50%;
-  --sidebar-primary-foreground: 0 0% 4%;
-  --sidebar-accent: 0 0% 10%;
-  --sidebar-accent-foreground: 30 80% 92%;
-  --sidebar-ring: 37 100% 50%;
+  --sidebar: 222 40% 7%;
+  --sidebar-foreground: 35 70% 88%;
+  --sidebar-border: 220 30% 16%;
+  --sidebar-primary: 215 90% 62%;
+  --sidebar-primary-foreground: 222 45% 5%;
+  --sidebar-accent: 222 30% 12%;
+  --sidebar-accent-foreground: 35 70% 88%;
+  --sidebar-ring: 215 90% 62%;
 
   --app-font-sans: 'Space Grotesk', 'Inter', sans-serif;
   --app-font-serif: Georgia, serif;
   --app-font-mono: 'Space Mono', Menlo, monospace;
 
-  /* No border radius — LCARS uses rounded pill shapes on specific elements, sharp elsewhere */
   --radius: 0rem;
 }
 
@@ -144,31 +144,13 @@
     @apply font-sans antialiased bg-background text-foreground;
   }
 
-  /* LCARS scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-  ::-webkit-scrollbar-track {
-    background: hsl(0 0% 4%);
-  }
-  ::-webkit-scrollbar-thumb {
-    background: hsl(37 100% 50% / 0.6);
-    border-radius: 0px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: hsl(37 100% 50%);
-  }
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: hsl(222 45% 5%); }
+  ::-webkit-scrollbar-thumb { background: hsl(215 90% 62% / 0.5); }
+  ::-webkit-scrollbar-thumb:hover { background: hsl(215 90% 62%); }
 }
 
-/* LCARS utility classes */
 @layer utilities {
-  .lcars-pill-left {
-    border-radius: 2rem 0 0 2rem;
-  }
-  .lcars-pill-right {
-    border-radius: 0 2rem 2rem 0;
-  }
-  .lcars-elbow {
-    border-radius: 2rem 0 0 0;
-  }
+  .lcars-pill-left  { border-radius: 2rem 0 0 2rem; }
+  .lcars-pill-right { border-radius: 0 2rem 2rem 0; }
 }
