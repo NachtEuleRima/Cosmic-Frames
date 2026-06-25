@@ -3,6 +3,7 @@ import { useCartId } from "@/hooks/use-cart-id";
 import { useGetCart, getGetCartQueryKey } from "@workspace/api-client-react";
 import { ShoppingCart, Menu, X, Zap } from "lucide-react";
 import { useState } from "react";
+import WarpBackground from "@/components/WarpBackground";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const cartId = useCartId();
@@ -23,6 +24,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
+
+      {/* Full-page warp starfield */}
+      <WarpBackground />
 
       {/* Top neon bar */}
       <div className="h-[3px] w-full" style={{
