@@ -16,7 +16,7 @@ export default function WarpBackground() {
     resize();
     window.addEventListener("resize", resize);
 
-    const NUM_STARS = 280;
+    const NUM_STARS = 100;
 
     type Star = {
       angle: number;
@@ -32,7 +32,7 @@ export default function WarpBackground() {
 
     const makeStar = (spread = false): Star => {
       const angle = Math.random() * Math.PI * 2;
-      const dist = spread ? Math.random() * 300 : Math.random() * 20;
+      const dist = spread ? Math.random() * 280 : Math.random() * 15;
       const cx = canvas.width / 2;
       const cy = canvas.height / 2;
       const x = cx + Math.cos(angle) * dist;
@@ -40,12 +40,12 @@ export default function WarpBackground() {
       return {
         angle,
         dist,
-        speed: Math.random() * 1.2 + 0.4,
-        size: Math.random() * 1.2 + 0.2,
+        speed: Math.random() * 0.5 + 0.2,
+        size: Math.random() * 1.0 + 0.2,
         x, y, prevX: x, prevY: y,
-        hue: Math.random() < 0.15 ? 280 + Math.random() * 40 : // purple-ish
-              Math.random() < 0.1  ? 170 + Math.random() * 20 : // teal-ish
-              210 + Math.random() * 30,                          // blue-white
+        hue: Math.random() < 0.15 ? 280 + Math.random() * 40
+           : Math.random() < 0.1  ? 170 + Math.random() * 20
+           : 210 + Math.random() * 30,
       };
     };
 
@@ -59,47 +59,45 @@ export default function WarpBackground() {
       const cx = W / 2;
       const cy = H / 2;
 
-      // Motion-blur fade trail
-      ctx.fillStyle = "rgba(8, 4, 18, 0.25)";
+      // Stronger fade = shorter trails
+      ctx.fillStyle = "rgba(8, 4, 18, 0.45)";
       ctx.fillRect(0, 0, W, H);
 
       for (const s of stars) {
         s.prevX = s.x;
         s.prevY = s.y;
 
-        // Accelerate exponentially with distance
-        s.dist += s.speed * (0.6 + s.dist * 0.018);
+        // Gentler acceleration
+        s.dist += s.speed * (0.5 + s.dist * 0.010);
 
         s.x = cx + Math.cos(s.angle) * s.dist;
         s.y = cy + Math.sin(s.angle) * s.dist;
 
-        // Recycle when off screen
         if (s.x < -20 || s.x > W + 20 || s.y < -20 || s.y > H + 20) {
-          const fresh = makeStar(false);
-          Object.assign(s, fresh);
+          Object.assign(s, makeStar(false));
           continue;
         }
 
-        const alpha = Math.min(1, 0.1 + s.dist / 220);
+        // Lower max alpha
+        const alpha = Math.min(0.55, 0.05 + s.dist / 300);
         const len = Math.hypot(s.x - s.prevX, s.y - s.prevY);
 
-        // Draw streak
-        if (len > 0.5) {
+        if (len > 0.4) {
           const grad = ctx.createLinearGradient(s.prevX, s.prevY, s.x, s.y);
-          grad.addColorStop(0, `hsla(${s.hue}, 80%, 80%, 0)`);
-          grad.addColorStop(1, `hsla(${s.hue}, 90%, 95%, ${alpha})`);
+          grad.addColorStop(0, `hsla(${s.hue}, 70%, 80%, 0)`);
+          grad.addColorStop(1, `hsla(${s.hue}, 80%, 92%, ${alpha})`);
           ctx.beginPath();
           ctx.moveTo(s.prevX, s.prevY);
           ctx.lineTo(s.x, s.y);
           ctx.strokeStyle = grad;
-          ctx.lineWidth = Math.min(2, 0.3 + s.dist / 180);
+          ctx.lineWidth = Math.min(1.2, 0.2 + s.dist / 260);
           ctx.stroke();
         }
 
-        // Bright dot at tip
+        // Dimmer tip dot
         ctx.beginPath();
-        ctx.arc(s.x, s.y, Math.min(1.8, 0.2 + s.dist / 200), 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${s.hue}, 90%, 98%, ${alpha})`;
+        ctx.arc(s.x, s.y, Math.min(1.2, 0.15 + s.dist / 280), 0, Math.PI * 2);
+        ctx.fillStyle = `hsla(${s.hue}, 80%, 95%, ${alpha * 0.8})`;
         ctx.fill();
       }
 
@@ -118,7 +116,7 @@ export default function WarpBackground() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 w-full h-full pointer-events-none"
-      style={{ zIndex: 0 }}
+      style={{ zIndex: 0, opacity: 0.7 }}
     />
   );
 }
