@@ -6,7 +6,7 @@ import { ArrowRight, Zap, Shield, Star } from "lucide-react";
 
 function ProductCard({ product }: { product: { id: number; name: string; price: number; category: string; imageUrl: string; starTrekQuote: string; inStock: boolean } }) {
   return (
-    <motion.div whileHover={{ y: -6, scale: 1.02 }} transition={{ type: "spring", stiffness: 300, damping: 20 }}>
+    <motion.div whileHover={{ y: -8, scale: 1.06 }} transition={{ type: "spring", stiffness: 260, damping: 18 }}>
       <Link href={`/products/${product.id}`} data-testid={`card-product-${product.id}`}>
         <div
           className="rounded-xl overflow-hidden group cursor-pointer h-full flex flex-col border transition-all duration-300"
