@@ -62,21 +62,21 @@
   --elevate-1: rgba(0, 255, 200, 0.04);
   --elevate-2: rgba(0, 255, 200, 0.09);
 
-  /* Deep purple-black void of space */
-  --background: 258 35% 4%;
-  --foreground: 180 60% 94%;
+  /* Space — dark navy, not black */
+  --background: 250 28% 16%;
+  --foreground: 200 70% 97%;
 
-  /* Slightly lighter panels */
-  --card: 258 30% 8%;
-  --card-foreground: 180 60% 94%;
-  --card-border: 258 25% 16%;
+  /* Panels — clearly distinct from background */
+  --card: 252 24% 22%;
+  --card-foreground: 200 70% 97%;
+  --card-border: 255 20% 34%;
 
-  --popover: 258 30% 8%;
-  --popover-foreground: 180 60% 94%;
-  --popover-border: 258 25% 16%;
+  --popover: 252 24% 22%;
+  --popover-foreground: 200 70% 97%;
+  --popover-border: 255 20% 34%;
 
-  --border: 258 25% 16%;
-  --input: 258 28% 11%;
+  --border: 255 20% 34%;
+  --input: 252 22% 26%;
   --ring: 172 100% 48%;
 
   /* PRIMARY: neon teal — #00F5C4 */

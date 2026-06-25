@@ -16,7 +16,7 @@ export default function WarpBackground() {
     resize();
     window.addEventListener("resize", resize);
 
-    const NUM_STARS = 100;
+    const NUM_STARS = 140;
 
     type Star = {
       angle: number;
@@ -59,8 +59,8 @@ export default function WarpBackground() {
       const cx = W / 2;
       const cy = H / 2;
 
-      // Stronger fade = shorter trails
-      ctx.fillStyle = "rgba(8, 4, 18, 0.45)";
+      // Trail fade — match the lighter navy background
+      ctx.fillStyle = "rgba(28, 22, 52, 0.38)";
       ctx.fillRect(0, 0, W, H);
 
       for (const s of stars) {
@@ -78,26 +78,26 @@ export default function WarpBackground() {
           continue;
         }
 
-        // Lower max alpha
-        const alpha = Math.min(0.55, 0.05 + s.dist / 300);
+        // Alpha ramps up with distance
+        const alpha = Math.min(0.85, 0.08 + s.dist / 180);
         const len = Math.hypot(s.x - s.prevX, s.y - s.prevY);
 
         if (len > 0.4) {
           const grad = ctx.createLinearGradient(s.prevX, s.prevY, s.x, s.y);
-          grad.addColorStop(0, `hsla(${s.hue}, 70%, 80%, 0)`);
-          grad.addColorStop(1, `hsla(${s.hue}, 80%, 92%, ${alpha})`);
+          grad.addColorStop(0, `hsla(${s.hue}, 80%, 85%, 0)`);
+          grad.addColorStop(1, `hsla(${s.hue}, 90%, 98%, ${alpha})`);
           ctx.beginPath();
           ctx.moveTo(s.prevX, s.prevY);
           ctx.lineTo(s.x, s.y);
           ctx.strokeStyle = grad;
-          ctx.lineWidth = Math.min(1.2, 0.2 + s.dist / 260);
+          ctx.lineWidth = Math.min(1.6, 0.3 + s.dist / 200);
           ctx.stroke();
         }
 
-        // Dimmer tip dot
+        // Bright tip dot
         ctx.beginPath();
-        ctx.arc(s.x, s.y, Math.min(1.2, 0.15 + s.dist / 280), 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${s.hue}, 80%, 95%, ${alpha * 0.8})`;
+        ctx.arc(s.x, s.y, Math.min(1.6, 0.2 + s.dist / 220), 0, Math.PI * 2);
+        ctx.fillStyle = `hsla(${s.hue}, 90%, 100%, ${alpha})`;
         ctx.fill();
       }
 
@@ -116,7 +116,7 @@ export default function WarpBackground() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 w-full h-full pointer-events-none"
-      style={{ zIndex: 0, opacity: 0.7 }}
+      style={{ zIndex: 0, opacity: 0.95 }}
     />
   );
 }
