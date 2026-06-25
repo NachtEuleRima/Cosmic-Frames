@@ -135,7 +135,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
       )}
 
-      <main className="flex-1">{children}</main>
+      <main className="flex-1" style={{ position: "relative", zIndex: 1 }}>{children}</main>
 
       {/* Footer */}
       <footer className="mt-20 border-t" style={{ borderColor: "hsl(172 100% 48% / 0.2)", background: "hsl(258 35% 4%)" }}>
