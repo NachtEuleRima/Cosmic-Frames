@@ -76,9 +76,9 @@ export default function Home() {
             <span className="text-glow-primary" style={{ color: "hsl(172 100% 48%)" }}>at warp speed.</span>
           </motion.h1>
 
-          <motion.p className="text-sm max-w-xl mx-auto mb-3 font-normal tracking-wide" style={{ color: "hsl(258 20% 50%)" }}
+          <motion.p className="text-lg sm:text-xl max-w-2xl mx-auto mb-3" style={{ color: "hsl(258 20% 65%)" }}
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.25 }}>
-            Star Trek-themed gear, apparel, and collectibles.
+            The galaxy's premier destination for Star Trek-themed gear, apparel, and collectibles.
           </motion.p>
 
           <motion.p className="text-base max-w-xl mx-auto mb-10 font-bold" style={{ color: "hsl(330 100% 57%)" }}
