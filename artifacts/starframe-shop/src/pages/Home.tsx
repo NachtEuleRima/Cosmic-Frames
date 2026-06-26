@@ -72,7 +72,7 @@ export default function Home() {
             style={{ fontSize: "clamp(3rem, 8vw, 6rem)", lineHeight: 1.05 }}
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <span className="text-foreground">Shop the universe,</span><br />
+            <span className="text-foreground">Shop the frontier,</span><br />
             <span className="text-glow-primary" style={{ color: "hsl(172 100% 48%)" }}>at warp speed.</span>
           </motion.h1>
 
