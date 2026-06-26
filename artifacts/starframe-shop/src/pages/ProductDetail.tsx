@@ -19,10 +19,6 @@ const FRAME_COLORS = [
   { label: "Stainless Steel", value: "stainless", hex: "#b0b8c1", available: false },
 ];
 
-const FRAME_MATERIALS = [
-  { label: "Plastic", value: "plastic", hex: "#c8cdd4", available: true },
-  { label: "Wood", value: "wood", hex: "#7c4f2a", available: false },
-];
 
 const FRAME_SIZES = [
   "4×6 in",
@@ -41,7 +37,6 @@ export default function ProductDetail() {
   const { toast } = useToast();
   const [quantity, setQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState("black");
-  const [selectedMaterial, setSelectedMaterial] = useState("plastic");
   const [selectedSize, setSelectedSize] = useState(FRAME_SIZES[0]);
 
   const { data: product, isLoading, isError } = useGetProduct(productId, {
@@ -190,35 +185,6 @@ export default function ProductDetail() {
                     style={{ backgroundColor: c.hex }}
                   >
                     {!c.available && <span className="absolute inset-0 flex items-center justify-center text-white/70 text-xs font-bold select-none">✕</span>}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Material */}
-            <div>
-              <p className="text-xs text-muted-foreground uppercase tracking-widest mb-2">Material</p>
-              <div className="flex gap-3">
-                {FRAME_MATERIALS.map((m) => (
-                  <button
-                    key={m.value}
-                    title={m.available ? m.label : `${m.label} — not available`}
-                    disabled={!m.available}
-                    onClick={() => m.available && setSelectedMaterial(m.value)}
-                    className={`flex flex-col items-center gap-1 focus:outline-none group
-                      ${!m.available ? "opacity-35 cursor-not-allowed" : "cursor-pointer"}`}
-                  >
-                    <span
-                      className={`w-8 h-8 rounded-full border-2 flex items-center justify-center transition-all duration-150
-                        ${!m.available ? "" : "group-hover:scale-110"}
-                        ${selectedMaterial === m.value && m.available
-                          ? "border-primary ring-2 ring-primary/50 ring-offset-2 ring-offset-background"
-                          : "border-border/60"}`}
-                      style={{ backgroundColor: m.hex }}
-                    >
-                      {!m.available && <span className="text-white/70 text-xs font-bold">✕</span>}
-                    </span>
-                    <span className="text-[10px] text-muted-foreground leading-none">{m.label}</span>
                   </button>
                 ))}
               </div>
