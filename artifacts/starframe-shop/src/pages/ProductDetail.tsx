@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/hooks/use-toast";
-import { ShoppingCart, ArrowLeft, Package, Ruler, Layers } from "lucide-react";
+import { ShoppingCart, ArrowLeft, Package, Ruler, Layers, Palette } from "lucide-react";
 
 const FRAME_COLORS = [
   { label: "Black", value: "black", hex: "#111111", available: true },
@@ -131,17 +131,29 @@ export default function ProductDetail() {
             "{product.starTrekQuote}"
           </blockquote>
 
-          {/* Specs */}
+          {/* Specs — 2×2 grid: Dimensions (with size picker) | Material | Status | Colour */}
           <div className="grid grid-cols-2 gap-3 mb-6">
+            {/* Dimensions + size dropdown */}
             {product.dimensions && (
               <div className="flex items-start gap-2 bg-muted/30 rounded-md p-3">
                 <Ruler className="h-4 w-4 text-primary mt-0.5 shrink-0" />
-                <div>
+                <div className="flex-1 min-w-0">
                   <p className="text-xs text-muted-foreground">Dimensions</p>
-                  <p className="text-sm text-foreground">{product.dimensions}</p>
+                  <p className="text-sm text-foreground mb-2">{product.dimensions}</p>
+                  <select
+                    value={selectedSize}
+                    onChange={(e) => setSelectedSize(e.target.value)}
+                    className="w-full rounded border border-border bg-background text-foreground px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-primary"
+                  >
+                    {FRAME_SIZES.map((s) => (
+                      <option key={s} value={s}>{s}</option>
+                    ))}
+                  </select>
                 </div>
               </div>
             )}
+
+            {/* Material */}
             {product.material && (
               <div className="flex items-start gap-2 bg-muted/30 rounded-md p-3">
                 <Layers className="h-4 w-4 text-primary mt-0.5 shrink-0" />
@@ -151,6 +163,8 @@ export default function ProductDetail() {
                 </div>
               </div>
             )}
+
+            {/* Status */}
             <div className="flex items-start gap-2 bg-muted/30 rounded-md p-3">
               <Package className="h-4 w-4 text-primary mt-0.5 shrink-0" />
               <div>
@@ -160,50 +174,32 @@ export default function ProductDetail() {
                 </p>
               </div>
             </div>
-          </div>
 
-          {/* Colour · Material · Size — one compact row */}
-          <div className="flex flex-wrap gap-x-8 gap-y-4 mb-6 items-end">
-
-            {/* Colour */}
-            <div>
-              <p className="text-xs text-muted-foreground uppercase tracking-widest mb-2">
-                Colour — <span className="text-foreground">{FRAME_COLORS.find(c => c.value === selectedColor)?.label}</span>
-              </p>
-              <div className="flex gap-3">
-                {FRAME_COLORS.map((c) => (
-                  <button
-                    key={c.value}
-                    title={c.available ? c.label : `${c.label} — not available`}
-                    disabled={!c.available}
-                    onClick={() => c.available && setSelectedColor(c.value)}
-                    className={`relative w-8 h-8 rounded-full border-2 transition-all duration-150 focus:outline-none
-                      ${!c.available ? "opacity-35 cursor-not-allowed" : "cursor-pointer hover:scale-110"}
-                      ${selectedColor === c.value && c.available
-                        ? "border-primary ring-2 ring-primary/50 ring-offset-2 ring-offset-background"
-                        : "border-border/60"}`}
-                    style={{ backgroundColor: c.hex }}
-                  >
-                    {!c.available && <span className="absolute inset-0 flex items-center justify-center text-white/70 text-xs font-bold select-none">✕</span>}
-                  </button>
-                ))}
+            {/* Colour swatches as 4th spec card */}
+            <div className="flex items-start gap-2 bg-muted/30 rounded-md p-3">
+              <Palette className="h-4 w-4 text-primary mt-0.5 shrink-0" />
+              <div>
+                <p className="text-xs text-muted-foreground">Colour</p>
+                <div className="flex gap-2 mt-1.5">
+                  {FRAME_COLORS.map((c) => (
+                    <button
+                      key={c.value}
+                      title={c.available ? c.label : `${c.label} — not available`}
+                      disabled={!c.available}
+                      onClick={() => c.available && setSelectedColor(c.value)}
+                      className={`relative w-6 h-6 rounded-full border-2 transition-all duration-150 focus:outline-none
+                        ${!c.available ? "opacity-35 cursor-not-allowed" : "cursor-pointer hover:scale-110"}
+                        ${selectedColor === c.value && c.available
+                          ? "border-primary ring-2 ring-primary/50 ring-offset-1 ring-offset-background"
+                          : "border-border/60"}`}
+                      style={{ backgroundColor: c.hex }}
+                    >
+                      {!c.available && <span className="absolute inset-0 flex items-center justify-center text-white/70 text-[9px] font-bold select-none">✕</span>}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
-
-            {/* Size */}
-            <div>
-              <p className="text-xs text-muted-foreground uppercase tracking-widest mb-2">Print Size</p>
-              <select
-                value={selectedSize}
-                onChange={(e) => setSelectedSize(e.target.value)}
-                className="w-36 rounded-md border border-border bg-background text-foreground px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
-              >
-                {FRAME_SIZES.map((s) => (
-                  <option key={s} value={s}>{s}</option>
-                ))}
-              </select>
-            </div>
-
           </div>
 
           {/* Quantity + Add */}
