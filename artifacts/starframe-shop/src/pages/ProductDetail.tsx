@@ -142,7 +142,7 @@ export default function ProductDetail() {
                   <select
                     value={selectedSize}
                     onChange={(e) => setSelectedSize(e.target.value)}
-                    className="w-full rounded border border-border bg-background text-foreground px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-primary"
+                    className="w-fit rounded border border-border bg-background text-foreground px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-primary"
                   >
                     {FRAME_SIZES.map((s) => (
                       <option key={s} value={s}>{s}</option>
