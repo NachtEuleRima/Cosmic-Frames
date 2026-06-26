@@ -48,3 +48,9 @@ id = "bmzfXOytc_dB1hbE204L5"
 uri = "file://artifacts/starframe-shop/src/assets/frame-8.png"
 type = "image"
 title = "Steampunk astrometrics frame"
+
+[[generated]]
+id = "PlQoCbk09Fzqb9OvLNfuU"
+uri = "file://artifacts/starframe-shop/src/assets/starship-framed.png"
+type = "image"
+title = "starship framed wall art"
