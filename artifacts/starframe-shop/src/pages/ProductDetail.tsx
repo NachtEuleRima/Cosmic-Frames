@@ -15,8 +15,8 @@ import { useToast } from "@/hooks/use-toast";
 import { ShoppingCart, ArrowLeft, Package, Ruler, Layers } from "lucide-react";
 
 const FRAME_COLORS = [
-  { label: "Black", value: "black", available: true },
-  { label: "Stainless Steel", value: "stainless", available: false },
+  { label: "Black", value: "black", hex: "#111111", available: true },
+  { label: "Stainless Steel", value: "stainless", hex: "#b0b8c1", available: false },
 ];
 
 const FRAME_SIZES = [
@@ -163,25 +163,26 @@ export default function ProductDetail() {
 
           {/* Color selector */}
           <div className="mb-5">
-            <p className="text-xs text-muted-foreground uppercase tracking-widest mb-2">Frame Colour</p>
-            <div className="flex gap-2">
+            <p className="text-xs text-muted-foreground uppercase tracking-widest mb-2">
+              Frame Colour — <span className="text-foreground">{FRAME_COLORS.find(c => c.value === selectedColor)?.label}</span>
+            </p>
+            <div className="flex gap-3">
               {FRAME_COLORS.map((c) => (
                 <button
                   key={c.value}
+                  title={c.available ? c.label : `${c.label} — not available`}
                   disabled={!c.available}
                   onClick={() => c.available && setSelectedColor(c.value)}
-                  className={`relative px-4 py-2 rounded-md text-sm font-medium border transition-all duration-150
-                    ${!c.available ? "opacity-40 cursor-not-allowed line-through" : ""}
+                  className={`relative w-8 h-8 rounded-full border-2 transition-all duration-150 focus:outline-none
+                    ${!c.available ? "opacity-35 cursor-not-allowed" : "cursor-pointer hover:scale-110"}
                     ${selectedColor === c.value && c.available
-                      ? "border-primary bg-primary/20 text-primary"
-                      : "border-border text-muted-foreground hover:border-primary/50"
+                      ? "border-primary ring-2 ring-primary/50 ring-offset-2 ring-offset-background"
+                      : "border-border/60"
                     }`}
+                  style={{ backgroundColor: c.hex }}
                 >
-                  {c.label}
                   {!c.available && (
-                    <span className="absolute -top-2 -right-2 text-[9px] bg-destructive text-white rounded px-1 leading-4">
-                      N/A
-                    </span>
+                    <span className="absolute inset-0 flex items-center justify-center text-white/70 text-xs font-bold select-none">✕</span>
                   )}
                 </button>
               ))}
