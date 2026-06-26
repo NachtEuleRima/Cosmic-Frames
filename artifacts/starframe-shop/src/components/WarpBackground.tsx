@@ -16,7 +16,7 @@ export default function WarpBackground() {
     resize();
     window.addEventListener("resize", resize);
 
-    const NUM_STARS = 140;
+    const NUM_STARS = 60;
 
     type Star = {
       angle: number;
@@ -40,7 +40,7 @@ export default function WarpBackground() {
       return {
         angle,
         dist,
-        speed: Math.random() * 0.5 + 0.2,
+        speed: Math.random() * 0.25 + 0.1,
         size: Math.random() * 1.0 + 0.2,
         x, y, prevX: x, prevY: y,
         hue: Math.random() < 0.15 ? 280 + Math.random() * 40
@@ -59,8 +59,8 @@ export default function WarpBackground() {
       const cx = W / 2;
       const cy = H / 2;
 
-      // Trail fade — match the lighter navy background
-      ctx.fillStyle = "rgba(28, 22, 52, 0.38)";
+      // Trail fade — quick, so streaks stay short
+      ctx.fillStyle = "rgba(28, 22, 52, 0.55)";
       ctx.fillRect(0, 0, W, H);
 
       for (const s of stars) {
@@ -78,8 +78,8 @@ export default function WarpBackground() {
           continue;
         }
 
-        // Alpha ramps up with distance
-        const alpha = Math.min(0.85, 0.08 + s.dist / 180);
+        // Alpha ramps up with distance — kept low
+        const alpha = Math.min(0.35, 0.03 + s.dist / 350);
         const len = Math.hypot(s.x - s.prevX, s.y - s.prevY);
 
         if (len > 0.4) {
@@ -116,7 +116,7 @@ export default function WarpBackground() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 w-full h-full pointer-events-none"
-      style={{ zIndex: 0, opacity: 0.95 }}
+      style={{ zIndex: 0, opacity: 0.5 }}
     />
   );
 }
