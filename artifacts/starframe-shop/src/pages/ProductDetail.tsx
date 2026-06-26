@@ -139,7 +139,6 @@ export default function ProductDetail() {
                 <Ruler className="h-4 w-4 text-primary mt-0.5 shrink-0" />
                 <div className="flex-1 min-w-0">
                   <p className="text-xs text-muted-foreground">Dimensions</p>
-                  <p className="text-sm text-foreground mb-2">{product.dimensions}</p>
                   <select
                     value={selectedSize}
                     onChange={(e) => setSelectedSize(e.target.value)}
