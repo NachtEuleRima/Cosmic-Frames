@@ -27,6 +27,7 @@ export const ListProductsQueryParams = zod.object({
 export const ListProductsResponseItem = zod.object({
   "id": zod.number(),
   "name": zod.string(),
+  "subtitle": zod.string().nullish(),
   "description": zod.string(),
   "price": zod.number(),
   "category": zod.string(),
@@ -47,6 +48,7 @@ export const ListProductsResponse = zod.array(ListProductsResponseItem)
 export const ListFeaturedProductsResponseItem = zod.object({
   "id": zod.number(),
   "name": zod.string(),
+  "subtitle": zod.string().nullish(),
   "description": zod.string(),
   "price": zod.number(),
   "category": zod.string(),
@@ -83,6 +85,7 @@ export const GetProductParams = zod.object({
 export const GetProductResponse = zod.object({
   "id": zod.number(),
   "name": zod.string(),
+  "subtitle": zod.string().nullish(),
   "description": zod.string(),
   "price": zod.number(),
   "category": zod.string(),

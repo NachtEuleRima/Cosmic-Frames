@@ -12,6 +12,8 @@ export interface HealthStatus {
 export interface Product {
   id: number;
   name: string;
+  /** @nullable */
+  subtitle?: string | null;
   description: string;
   price: number;
   category: string;

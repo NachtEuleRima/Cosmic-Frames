@@ -118,7 +118,8 @@ export default function ProductDetail() {
         {/* Details */}
         <div className="flex flex-col">
           <Badge className="w-fit mb-3 bg-primary/20 text-primary border-primary/30">{product.category}</Badge>
-          <h1 className="text-3xl font-bold text-foreground mb-2" data-testid="text-product-name">{product.name}</h1>
+          <h1 className="text-3xl font-bold text-foreground mb-1" data-testid="text-product-name">{product.name}</h1>
+          {product.subtitle && <p className="text-sm text-muted-foreground mb-2">{product.subtitle}</p>}
 
           <p className="text-3xl font-extrabold text-primary mb-4" data-testid="text-product-price">
             ${product.price.toFixed(2)}

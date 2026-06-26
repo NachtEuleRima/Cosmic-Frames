@@ -259,6 +259,8 @@ components:
           type: integer
         name:
           type: string
+        subtitle:
+          type: ["string", "null"]
         description:
           type: string
         price:
