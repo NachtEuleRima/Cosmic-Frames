@@ -78,7 +78,7 @@ export default function Home() {
 
           <motion.p className="text-lg sm:text-xl max-w-2xl mx-auto mb-3" style={{ color: "hsl(258 20% 65%)" }}
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.25 }}>
-            The galaxy's premier destination for gear, apparel, and collectibles.
+            The galaxy's premier destination for uniforms, equipment, and artifacts.
           </motion.p>
 
           <motion.p className="text-base max-w-xl mx-auto mb-10 font-bold" style={{ color: "hsl(330 100% 57%)" }}
