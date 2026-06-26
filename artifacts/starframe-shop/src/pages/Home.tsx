@@ -63,7 +63,7 @@ export default function Home() {
           <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <span className="inline-block text-xs font-black tracking-[0.3em] uppercase px-4 py-2 rounded-full mb-8 border"
               style={{ color: "hsl(172 100% 48%)", borderColor: "hsl(172 100% 48% / 0.4)", background: "hsl(172 100% 48% / 0.08)" }}>
-              ⚡ Starfleet Certified Framing Technology ⚡
+              ⚡ Starfleet Certified · Est. 2364 ⚡
             </span>
           </motion.div>
 
