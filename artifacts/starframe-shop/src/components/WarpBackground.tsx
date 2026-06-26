@@ -79,7 +79,7 @@ export default function WarpBackground() {
         }
 
         // Alpha ramps up with distance — kept low
-        const alpha = Math.min(0.35, 0.03 + s.dist / 350);
+        const alpha = Math.min(0.45, 0.04 + s.dist / 300);
         const len = Math.hypot(s.x - s.prevX, s.y - s.prevY);
 
         if (len > 0.4) {
