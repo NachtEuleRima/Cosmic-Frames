@@ -167,76 +167,77 @@ export default function ProductDetail() {
             </div>
           </div>
 
-          {/* Color selector */}
-          <div className="mb-5">
-            <p className="text-xs text-muted-foreground uppercase tracking-widest mb-2">
-              Frame Colour — <span className="text-foreground">{FRAME_COLORS.find(c => c.value === selectedColor)?.label}</span>
-            </p>
-            <div className="flex gap-3">
-              {FRAME_COLORS.map((c) => (
-                <button
-                  key={c.value}
-                  title={c.available ? c.label : `${c.label} — not available`}
-                  disabled={!c.available}
-                  onClick={() => c.available && setSelectedColor(c.value)}
-                  className={`relative w-8 h-8 rounded-full border-2 transition-all duration-150 focus:outline-none
-                    ${!c.available ? "opacity-35 cursor-not-allowed" : "cursor-pointer hover:scale-110"}
-                    ${selectedColor === c.value && c.available
-                      ? "border-primary ring-2 ring-primary/50 ring-offset-2 ring-offset-background"
-                      : "border-border/60"
-                    }`}
-                  style={{ backgroundColor: c.hex }}
-                >
-                  {!c.available && (
-                    <span className="absolute inset-0 flex items-center justify-center text-white/70 text-xs font-bold select-none">✕</span>
-                  )}
-                </button>
-              ))}
-            </div>
-          </div>
+          {/* Colour · Material · Size — one compact row */}
+          <div className="flex flex-wrap gap-x-8 gap-y-4 mb-6 items-end">
 
-          {/* Material selector */}
-          <div className="mb-5">
-            <p className="text-xs text-muted-foreground uppercase tracking-widest mb-2">Material</p>
-            <div className="flex gap-4">
-              {FRAME_MATERIALS.map((m) => (
-                <button
-                  key={m.value}
-                  title={m.available ? m.label : `${m.label} — not available`}
-                  disabled={!m.available}
-                  onClick={() => m.available && setSelectedMaterial(m.value)}
-                  className={`flex flex-col items-center gap-1 focus:outline-none group
-                    ${!m.available ? "opacity-35 cursor-not-allowed" : "cursor-pointer"}`}
-                >
-                  <span
-                    className={`w-8 h-8 rounded-full border-2 flex items-center justify-center transition-all duration-150
-                      ${!m.available ? "" : "group-hover:scale-110"}
-                      ${selectedMaterial === m.value && m.available
+            {/* Colour */}
+            <div>
+              <p className="text-xs text-muted-foreground uppercase tracking-widest mb-2">
+                Colour — <span className="text-foreground">{FRAME_COLORS.find(c => c.value === selectedColor)?.label}</span>
+              </p>
+              <div className="flex gap-3">
+                {FRAME_COLORS.map((c) => (
+                  <button
+                    key={c.value}
+                    title={c.available ? c.label : `${c.label} — not available`}
+                    disabled={!c.available}
+                    onClick={() => c.available && setSelectedColor(c.value)}
+                    className={`relative w-8 h-8 rounded-full border-2 transition-all duration-150 focus:outline-none
+                      ${!c.available ? "opacity-35 cursor-not-allowed" : "cursor-pointer hover:scale-110"}
+                      ${selectedColor === c.value && c.available
                         ? "border-primary ring-2 ring-primary/50 ring-offset-2 ring-offset-background"
-                        : "border-border/60"
-                      }`}
-                    style={{ backgroundColor: m.hex }}
+                        : "border-border/60"}`}
+                    style={{ backgroundColor: c.hex }}
                   >
-                    {!m.available && <span className="text-white/70 text-xs font-bold">✕</span>}
-                  </span>
-                  <span className="text-[10px] text-muted-foreground leading-none">{m.label}</span>
-                </button>
-              ))}
+                    {!c.available && <span className="absolute inset-0 flex items-center justify-center text-white/70 text-xs font-bold select-none">✕</span>}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* Size selector */}
-          <div className="mb-6">
-            <p className="text-xs text-muted-foreground uppercase tracking-widest mb-2">Print Size</p>
-            <select
-              value={selectedSize}
-              onChange={(e) => setSelectedSize(e.target.value)}
-              className="w-full rounded-md border border-border bg-background text-foreground px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
-            >
-              {FRAME_SIZES.map((s) => (
-                <option key={s} value={s}>{s}</option>
-              ))}
-            </select>
+            {/* Material */}
+            <div>
+              <p className="text-xs text-muted-foreground uppercase tracking-widest mb-2">Material</p>
+              <div className="flex gap-3">
+                {FRAME_MATERIALS.map((m) => (
+                  <button
+                    key={m.value}
+                    title={m.available ? m.label : `${m.label} — not available`}
+                    disabled={!m.available}
+                    onClick={() => m.available && setSelectedMaterial(m.value)}
+                    className={`flex flex-col items-center gap-1 focus:outline-none group
+                      ${!m.available ? "opacity-35 cursor-not-allowed" : "cursor-pointer"}`}
+                  >
+                    <span
+                      className={`w-8 h-8 rounded-full border-2 flex items-center justify-center transition-all duration-150
+                        ${!m.available ? "" : "group-hover:scale-110"}
+                        ${selectedMaterial === m.value && m.available
+                          ? "border-primary ring-2 ring-primary/50 ring-offset-2 ring-offset-background"
+                          : "border-border/60"}`}
+                      style={{ backgroundColor: m.hex }}
+                    >
+                      {!m.available && <span className="text-white/70 text-xs font-bold">✕</span>}
+                    </span>
+                    <span className="text-[10px] text-muted-foreground leading-none">{m.label}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Size */}
+            <div>
+              <p className="text-xs text-muted-foreground uppercase tracking-widest mb-2">Print Size</p>
+              <select
+                value={selectedSize}
+                onChange={(e) => setSelectedSize(e.target.value)}
+                className="w-36 rounded-md border border-border bg-background text-foreground px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
+              >
+                {FRAME_SIZES.map((s) => (
+                  <option key={s} value={s}>{s}</option>
+                ))}
+              </select>
+            </div>
+
           </div>
 
           {/* Quantity + Add */}
