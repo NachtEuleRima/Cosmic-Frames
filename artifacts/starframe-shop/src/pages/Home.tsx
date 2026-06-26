@@ -63,7 +63,7 @@ export default function Home() {
           <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <span className="inline-block text-xs font-black tracking-[0.3em] uppercase px-4 py-2 rounded-full mb-8 border"
               style={{ color: "hsl(172 100% 48%)", borderColor: "hsl(172 100% 48% / 0.4)", background: "hsl(172 100% 48% / 0.08)" }}>
-              ⚡ Autonomous Frontier ⚡
+              ⚡ Starfleet Certified Framing Technology ⚡
             </span>
           </motion.div>
 
@@ -72,13 +72,13 @@ export default function Home() {
             style={{ fontSize: "clamp(3rem, 8vw, 6rem)", lineHeight: 1.05 }}
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <span className="text-foreground">Frame your memories</span><br />
+            <span className="text-foreground">Shop the universe,</span><br />
             <span className="text-glow-primary" style={{ color: "hsl(172 100% 48%)" }}>at warp speed.</span>
           </motion.h1>
 
           <motion.p className="text-lg sm:text-xl max-w-2xl mx-auto mb-3" style={{ color: "hsl(258 20% 65%)" }}
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.25 }}>
-            The galaxy's premier destination for Star Trek-themed photo frames.
+            The galaxy's premier destination for Star Trek-themed gear, apparel, and collectibles.
           </motion.p>
 
           <motion.p className="text-base max-w-xl mx-auto mb-10 font-bold" style={{ color: "hsl(330 100% 57%)" }}
@@ -117,7 +117,7 @@ export default function Home() {
             <motion.div className="flex flex-wrap justify-center gap-4 mt-16"
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}>
               {[
-                { value: `${stats.totalProducts}+`, label: "Frame Models", color: "hsl(172 100% 48%)" },
+                { value: `${stats.totalProducts}+`, label: "Products", color: "hsl(172 100% 48%)" },
                 { value: stats.happyCustomers.toLocaleString(), label: "Happy Crew Members", color: "hsl(330 100% 57%)" },
                 { value: `${stats.totalCategories}`, label: "Collections", color: "hsl(272 100% 63%)" },
               ].map(s => (
@@ -144,7 +144,7 @@ export default function Home() {
         <motion.div className="text-center mb-12"
           initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
           <h2 className="font-black text-3xl sm:text-4xl text-foreground mb-2">
-            <span className="text-glow-secondary" style={{ color: "hsl(330 100% 57%)" }}>Starfleet</span>{" "}Approved Frames
+            <span className="text-glow-secondary" style={{ color: "hsl(330 100% 57%)" }}>Starfleet</span>{" "}Approved Gear
           </h2>
           <p style={{ color: "hsl(258 20% 55%)" }}>Our finest specimens from across the quadrant</p>
         </motion.div>
