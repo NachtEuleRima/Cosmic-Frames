@@ -76,7 +76,7 @@ export default function Home() {
             <span className="text-glow-primary" style={{ color: "hsl(172 100% 48%)" }}>at warp speed.</span>
           </motion.h1>
 
-          <motion.p className="text-lg sm:text-xl max-w-2xl mx-auto mb-3" style={{ color: "hsl(258 20% 65%)" }}
+          <motion.p className="text-base max-w-3xl mx-auto mb-3 whitespace-nowrap" style={{ color: "hsl(258 20% 65%)" }}
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.25 }}>
             The galaxy's premier destination for uniforms, equipment, and artifacts.
           </motion.p>
