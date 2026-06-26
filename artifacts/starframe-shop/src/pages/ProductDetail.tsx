@@ -104,13 +104,13 @@ export default function ProductDetail() {
         Back to Armory
       </Link>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        {/* Image */}
-        <div className="rounded-lg overflow-hidden border border-border bg-card aspect-square">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:items-stretch">
+        {/* Image — stretches to match the right column height */}
+        <div className="rounded-lg overflow-hidden border border-border bg-card md:min-h-0">
           <img
             src={product.imageUrl}
             alt={product.name}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center"
             data-testid="img-product"
           />
         </div>
