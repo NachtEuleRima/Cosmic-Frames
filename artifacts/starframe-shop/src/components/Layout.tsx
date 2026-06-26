@@ -48,8 +48,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <Link href="/" className="flex items-center gap-2 group">
               <Zap className="h-6 w-6 group-hover:animate-float" style={{ color: "hsl(172 100% 48%)" }} />
               <span className="font-black text-xl tracking-widest uppercase">
-                <span style={{ color: "hsl(172 100% 48%)" }} className="text-glow-primary">STAR</span>
-                <span className="text-foreground">FRAME</span>
+                <span style={{ color: "hsl(172 100% 48%)" }} className="text-glow-primary">STELLA</span>
+                <span className="text-foreground">OUTPOST</span>
               </span>
             </Link>
 
@@ -144,19 +144,18 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         }} />
         <div className="max-w-7xl mx-auto px-4 py-10 text-center">
           <p className="font-black tracking-widest text-sm uppercase mb-1">
-            <span style={{ color: "hsl(172 100% 48%)" }} className="text-glow-primary">STAR</span>
-            <span className="text-foreground">FRAME</span>
-            <span style={{ color: "hsl(330 100% 57%)" }}> SHOP</span>
+            <span style={{ color: "hsl(172 100% 48%)" }} className="text-glow-primary">STELLA</span>
+            <span className="text-foreground">OUTPOST</span>
           </p>
           <p className="text-xs" style={{ color: "hsl(258 20% 55%)" }}>
-            Boldly framing what no one has framed before · Resistance is futile
+            Boldly supplying what no outpost has stocked before · Resistance is futile
           </p>
           <div className="flex justify-center gap-4 mt-4 text-xs font-mono" style={{ color: "hsl(258 20% 40%)" }}>
             <span style={{ color: "hsl(172 100% 48% / 0.6)" }}>LCARS v47.2</span>
             <span>·</span>
             <span style={{ color: "hsl(330 100% 57% / 0.6)" }}>FEDERATION CERTIFIED</span>
             <span>·</span>
-            <span style={{ color: "hsl(272 100% 63% / 0.6)" }}>ALL FRAMES CLEARED</span>
+            <span style={{ color: "hsl(272 100% 63% / 0.6)" }}>ALL CARGO CLEARED</span>
           </div>
         </div>
       </footer>
