@@ -14,6 +14,20 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/hooks/use-toast";
 import { ShoppingCart, ArrowLeft, Package, Ruler, Layers } from "lucide-react";
 
+const FRAME_COLORS = [
+  { label: "Black", value: "black", available: true },
+  { label: "Stainless Steel", value: "stainless", available: false },
+];
+
+const FRAME_SIZES = [
+  "4×6 in",
+  "5×7 in",
+  "8×10 in",
+  "8×12 in",
+  "11×14 in",
+  "13×19 in",
+];
+
 export default function ProductDetail() {
   const { id } = useParams<{ id: string }>();
   const productId = parseInt(id ?? "0", 10);
@@ -21,6 +35,8 @@ export default function ProductDetail() {
   const queryClient = useQueryClient();
   const { toast } = useToast();
   const [quantity, setQuantity] = useState(1);
+  const [selectedColor, setSelectedColor] = useState("black");
+  const [selectedSize, setSelectedSize] = useState(FRAME_SIZES[0]);
 
   const { data: product, isLoading, isError } = useGetProduct(productId, {
     query: { enabled: !!productId, queryKey: getGetProductQueryKey(productId) },
@@ -143,6 +159,47 @@ export default function ProductDetail() {
                 </p>
               </div>
             </div>
+          </div>
+
+          {/* Color selector */}
+          <div className="mb-5">
+            <p className="text-xs text-muted-foreground uppercase tracking-widest mb-2">Frame Colour</p>
+            <div className="flex gap-2">
+              {FRAME_COLORS.map((c) => (
+                <button
+                  key={c.value}
+                  disabled={!c.available}
+                  onClick={() => c.available && setSelectedColor(c.value)}
+                  className={`relative px-4 py-2 rounded-md text-sm font-medium border transition-all duration-150
+                    ${!c.available ? "opacity-40 cursor-not-allowed line-through" : ""}
+                    ${selectedColor === c.value && c.available
+                      ? "border-primary bg-primary/20 text-primary"
+                      : "border-border text-muted-foreground hover:border-primary/50"
+                    }`}
+                >
+                  {c.label}
+                  {!c.available && (
+                    <span className="absolute -top-2 -right-2 text-[9px] bg-destructive text-white rounded px-1 leading-4">
+                      N/A
+                    </span>
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Size selector */}
+          <div className="mb-6">
+            <p className="text-xs text-muted-foreground uppercase tracking-widest mb-2">Print Size</p>
+            <select
+              value={selectedSize}
+              onChange={(e) => setSelectedSize(e.target.value)}
+              className="w-full rounded-md border border-border bg-background text-foreground px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
+            >
+              {FRAME_SIZES.map((s) => (
+                <option key={s} value={s}>{s}</option>
+              ))}
+            </select>
           </div>
 
           {/* Quantity + Add */}
