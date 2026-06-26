@@ -104,9 +104,9 @@ export default function ProductDetail() {
         Back to Armory
       </Link>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:items-stretch">
-        {/* Image — stretches to match the right column height */}
-        <div className="rounded-lg overflow-hidden border border-border bg-card md:min-h-0">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        {/* Image — tall portrait, self-stretches to fill right column height */}
+        <div className="rounded-lg overflow-hidden border border-border bg-card max-h-[680px]">
           <img
             src={product.imageUrl}
             alt={product.name}
