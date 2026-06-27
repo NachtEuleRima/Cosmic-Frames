@@ -54,3 +54,9 @@ id = "PlQoCbk09Fzqb9OvLNfuU"
 uri = "file://artifacts/starframe-shop/src/assets/starship-framed.png"
 type = "image"
 title = "starship framed wall art"
+
+[[generated]]
+id = "vgRjRu47V3uHHQDkppx5U"
+uri = "file://artifacts/starframe-shop/src/assets/robot-girl.png"
+type = "image"
+title = "generated_image"
