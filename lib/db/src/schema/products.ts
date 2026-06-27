@@ -16,7 +16,7 @@ export const productsTable = pgTable("products", {
   featured: boolean("featured").notNull().default(false),
   dimensions: text("dimensions"),
   material: text("material"),
-  sizes: json("sizes").$type<string[]>(),
+  sizes: json("sizes").$type<{ size: string; price: number }[]>(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 

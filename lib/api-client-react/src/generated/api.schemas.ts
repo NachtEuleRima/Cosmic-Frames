@@ -9,6 +9,11 @@ export interface HealthStatus {
   status: string;
 }
 
+export interface ProductSize {
+  size: string;
+  price: number;
+}
+
 export interface Product {
   id: number;
   name: string;
@@ -28,7 +33,7 @@ export interface Product {
   /** @nullable */
   material?: string | null;
   /** @nullable */
-  sizes?: string[] | null;
+  sizes?: ProductSize[] | null;
 }
 
 export interface Category {

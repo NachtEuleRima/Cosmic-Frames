@@ -17,5 +17,6 @@ export * from './listProductsParams';
 export * from './order';
 export * from './orderInput';
 export * from './product';
+export * from './productSize';
 export * from './removeFromCartParams';
 export * from './storeStats';

@@ -284,7 +284,16 @@ components:
         sizes:
           type: ["array", "null"]
           items:
-            type: string
+            $ref: "#/components/schemas/ProductSize"
+
+    ProductSize:
+      type: object
+      required: [size, price]
+      properties:
+        size:
+          type: string
+        price:
+          type: number
 
     Category:
       type: object

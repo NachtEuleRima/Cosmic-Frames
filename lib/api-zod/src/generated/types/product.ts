@@ -5,6 +5,7 @@
  * StarFrame Shop API — Star Trek themed photo frame store
  * OpenAPI spec version: 0.1.0
  */
+import type { ProductSize } from './productSize';
 
 export interface Product {
   id: number;
@@ -25,5 +26,5 @@ export interface Product {
   /** @nullable */
   material?: string | null;
   /** @nullable */
-  sizes?: string[] | null;
+  sizes?: ProductSize[] | null;
 }

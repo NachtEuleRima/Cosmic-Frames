@@ -44,8 +44,12 @@ export default function ProductDetail() {
   });
 
   useEffect(() => {
-    if (product?.sizes?.length) setSelectedSize(product.sizes[0]);
+    if (product?.sizes?.length) setSelectedSize(product.sizes[0].size);
   }, [product?.id]);
+
+  const displayPrice = product?.sizes?.length
+    ? (product.sizes.find((s) => s.size === selectedSize)?.price ?? product.price)
+    : product?.price ?? 0;
 
   const addToCart = useAddToCart({
     mutation: {
@@ -126,7 +130,7 @@ export default function ProductDetail() {
           {product.subtitle && <p className="text-sm text-muted-foreground mb-2">{product.subtitle}</p>}
 
           <p className="text-3xl font-extrabold text-primary mb-4" data-testid="text-product-price">
-            ${product.price.toFixed(2)}
+            ${Number(displayPrice).toFixed(2)}
           </p>
 
           <p className="text-muted-foreground mb-6 leading-relaxed">{product.description}</p>
@@ -149,9 +153,14 @@ export default function ProductDetail() {
                     onChange={(e) => setSelectedSize(e.target.value)}
                     className="w-fit rounded border border-border bg-background text-foreground px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-primary"
                   >
-                    {(product.sizes ?? FRAME_SIZES).map((s) => (
-                      <option key={s} value={s}>{s}</option>
-                    ))}
+                    {product.sizes
+                      ? product.sizes.map((s) => (
+                          <option key={s.size} value={s.size}>{s.size}</option>
+                        ))
+                      : FRAME_SIZES.map((s) => (
+                          <option key={s} value={s}>{s}</option>
+                        ))
+                    }
                   </select>
                 </div>
               </div>
