@@ -132,6 +132,7 @@ export default function ProductDetail() {
           <p className="text-3xl font-extrabold text-primary mb-4" data-testid="text-product-price">
             ${Number(displayPrice).toFixed(2)}
           </p>
+          <p className="text-xs text-muted-foreground -mt-3 mb-4">Shipping included</p>
 
           <p className="text-muted-foreground mb-6 leading-relaxed">{product.description}</p>
 
