@@ -223,7 +223,7 @@ export default function Checkout() {
                 disabled={createOrder.isPending}
                 data-testid="button-place-order"
               >
-                {createOrder.isPending ? "Engaging warp drive..." : "Engage — Place Order"}
+                {createOrder.isPending ? "Engaging warp drive..." : "Engage"}
               </Button>
             </form>
           </Form>
