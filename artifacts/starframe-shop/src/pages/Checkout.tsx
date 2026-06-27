@@ -249,6 +249,7 @@ export default function Checkout() {
               <span className="font-semibold text-foreground">Total</span>
               <span className="text-xl font-bold text-primary" data-testid="text-total">${cart?.subtotal.toFixed(2)}</span>
             </div>
+            <p className="text-xs text-muted-foreground mt-1">Shipping included</p>
           </div>
         </div>
       </div>
