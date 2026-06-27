@@ -24,4 +24,6 @@ export interface Product {
   dimensions?: string | null;
   /** @nullable */
   material?: string | null;
+  /** @nullable */
+  sizes?: string[] | null;
 }

@@ -281,6 +281,10 @@ components:
           type: ["string", "null"]
         material:
           type: ["string", "null"]
+        sizes:
+          type: ["array", "null"]
+          items:
+            type: string
 
     Category:
       type: object

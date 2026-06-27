@@ -37,7 +37,8 @@ export const ListProductsResponseItem = zod.object({
   "starTrekQuote": zod.string(),
   "featured": zod.boolean().optional(),
   "dimensions": zod.string().nullish(),
-  "material": zod.string().nullish()
+  "material": zod.string().nullish(),
+  "sizes": zod.array(zod.string()).nullish()
 })
 export const ListProductsResponse = zod.array(ListProductsResponseItem)
 
@@ -58,7 +59,8 @@ export const ListFeaturedProductsResponseItem = zod.object({
   "starTrekQuote": zod.string(),
   "featured": zod.boolean().optional(),
   "dimensions": zod.string().nullish(),
-  "material": zod.string().nullish()
+  "material": zod.string().nullish(),
+  "sizes": zod.array(zod.string()).nullish()
 })
 export const ListFeaturedProductsResponse = zod.array(ListFeaturedProductsResponseItem)
 
@@ -95,7 +97,8 @@ export const GetProductResponse = zod.object({
   "starTrekQuote": zod.string(),
   "featured": zod.boolean().optional(),
   "dimensions": zod.string().nullish(),
-  "material": zod.string().nullish()
+  "material": zod.string().nullish(),
+  "sizes": zod.array(zod.string()).nullish()
 })
 
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, Link } from "wouter";
 import {
   useGetProduct,
@@ -42,6 +42,10 @@ export default function ProductDetail() {
   const { data: product, isLoading, isError } = useGetProduct(productId, {
     query: { enabled: !!productId, queryKey: getGetProductQueryKey(productId) },
   });
+
+  useEffect(() => {
+    if (product?.sizes?.length) setSelectedSize(product.sizes[0]);
+  }, [product?.id]);
 
   const addToCart = useAddToCart({
     mutation: {
@@ -145,7 +149,7 @@ export default function ProductDetail() {
                     onChange={(e) => setSelectedSize(e.target.value)}
                     className="w-fit rounded border border-border bg-background text-foreground px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-primary"
                   >
-                    {FRAME_SIZES.map((s) => (
+                    {(product.sizes ?? FRAME_SIZES).map((s) => (
                       <option key={s} value={s}>{s}</option>
                     ))}
                   </select>
