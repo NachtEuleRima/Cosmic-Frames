@@ -192,7 +192,7 @@ export default function ProductDetail() {
             <div className="flex items-start gap-2 bg-muted/30 rounded-md p-3">
               <Palette className="h-4 w-4 text-primary mt-0.5 shrink-0" />
               <div>
-                <p className="text-xs text-muted-foreground">Colour</p>
+                <p className="text-xs text-muted-foreground">Frame</p>
                 <div className="flex gap-2 mt-1.5">
                   {FRAME_COLORS.map((c) => (
                     <button
