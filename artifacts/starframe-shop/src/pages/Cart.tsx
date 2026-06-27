@@ -129,9 +129,7 @@ export default function Cart() {
                 ${cart?.subtotal.toFixed(2)}
               </span>
             </div>
-            <p className="text-xs text-muted-foreground mb-4">
-              Shipping calculated at warp speed during checkout
-            </p>
+            <p className="text-xs text-muted-foreground mb-4">Shipping included</p>
             <Link href="/checkout">
               <Button
                 className="w-full bg-primary text-primary-foreground hover:bg-primary/90 gap-2 text-base py-6"
