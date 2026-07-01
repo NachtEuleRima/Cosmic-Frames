@@ -11,10 +11,10 @@ export function useCartId() {
   const [cartId, setCartId] = useState<string | null>(null);
 
   useEffect(() => {
-    let id = localStorage.getItem("stella_outpost_cart_id");
+    let id = localStorage.getItem("stellar_outpost_cart_id");
     if (!id) {
       id = generateUUID();
-      localStorage.setItem("stella_outpost_cart_id", id);
+      localStorage.setItem("stellar_outpost_cart_id", id);
     }
     setCartId(id);
   }, []);

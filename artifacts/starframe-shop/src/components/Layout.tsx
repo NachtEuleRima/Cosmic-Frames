@@ -48,7 +48,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <Link href="/" className="flex items-center gap-2 group">
               <Zap className="h-6 w-6 group-hover:animate-float" style={{ color: "hsl(172 100% 48%)" }} />
               <span className="font-black text-xl tracking-widest uppercase">
-                <span style={{ color: "hsl(172 100% 48%)" }} className="text-glow-primary">STELLA</span>
+                <span style={{ color: "hsl(172 100% 48%)" }} className="text-glow-primary">STELLAR</span>
                 <span className="text-foreground">OUTPOST</span>
               </span>
             </Link>
@@ -144,7 +144,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         }} />
         <div className="max-w-7xl mx-auto px-4 py-10 text-center">
           <p className="font-black tracking-widest text-sm uppercase mb-1">
-            <span style={{ color: "hsl(172 100% 48%)" }} className="text-glow-primary">STELLA</span>
+            <span style={{ color: "hsl(172 100% 48%)" }} className="text-glow-primary">STELLAR</span>
             <span className="text-foreground">OUTPOST</span>
           </p>
           <p className="text-xs" style={{ color: "hsl(258 20% 55%)" }}>

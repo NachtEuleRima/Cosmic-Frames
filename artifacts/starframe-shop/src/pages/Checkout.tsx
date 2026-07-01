@@ -50,7 +50,7 @@ export default function Checkout() {
     mutation: {
       onSuccess: (order) => {
         queryClient.invalidateQueries({ queryKey: getGetCartQueryKey({ cartId: cartId ?? "" }) });
-        localStorage.removeItem("stella_outpost_cart_id");
+        localStorage.removeItem("stellar_outpost_cart_id");
         setOrderId(order.id);
       },
     },
